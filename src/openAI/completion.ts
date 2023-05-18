@@ -1,9 +1,17 @@
 import { ChatCompletionRequestMessageRoleEnum, OpenAIApi } from "openai";
 import {
   getDocumentationSystemMessage,
-  getDocumentationSystemMessages,
   systemProtocolMessage,
 } from "./messages";
+
+// const hardcodedPrompt = `
+// Given a 16x16x16 space, create a column at position of height 4 and as base a square of 0.5 in both directions.
+//        The column should be formed by one cube with Y scale 4 and start on the ground. 
+//        At height 0.5 of the column, add a cylinder in horizontal orientation with y scale 7 and 90 degres rotated on the X axis 
+//        The base of the cylinder should have a scale of 0.3 in X and Z directions.
+// `
+
+const hardcodedPrompt = `Create a house using shapes. Do not include any explanations, only provide a RFC8259 compliant JSON response`
 
 export const createChatCompletion = async (
   openai: OpenAIApi,
@@ -20,7 +28,8 @@ export const createChatCompletion = async (
     // ...getDocumentationSystemMessages(sdkDocumentation),
     {
       role: ChatCompletionRequestMessageRoleEnum.User,
-      content: `Given a 16x16x16 space, create a column of height 4. The column should be formed by cubes and start on the ground. At height 2 of the column, add a column made out of cylinders in horizontal orientation with length 7 and 90 degres rotated on the Z axis. Do not include any explanations, only provide a RFC8259 compliant JSON response`,
+      content: userPrompt + '\n Do not include any explanations, only provide a RFC8259 compliant JSON response'
+      // hardcodedPrompt ?? userPrompt
       // content: `Create a list of shapes that put together are a house for the Decentraland scene I'm creating. Use as many shapes as possible so the house looks as realistic as possible. The house must be between 1 and 16 meters. The only hole should be the door.
       // Do not include any explanations, only provide a RFC8259 compliant JSON response`,
     },
