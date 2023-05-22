@@ -6,6 +6,7 @@ export const systemProtocolMessage = `
     You operate in a 3D Space. You work in a X,Y,Z coordinate system. X denotes width, Y denotes height, Z denotes depth. 0.0,0.0,0.0 is the default space origin, located at the bottom left corner.
     The positions must be positive, they can't be negative numbers. The size of the area must be between 1 and 16 meters.
     The floor is at x=0.0, y=0.0, z=0.0. The ceiling is at x=0.0, y=16.0, z=0.0.
+    The middle of the scene would be at x=8.0, y=8.0, z=8.0.
 
     You answer by only generating JSON files that contain the following information:
 
